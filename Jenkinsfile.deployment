@@ -13,8 +13,8 @@ pipeline {
                         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                     ]
                 ]) {
-                    sh "chmod +x ./create_service.sh"
-                    sh "./create_service.sh"
+                    sh "chmod +x ./aws.sh"
+                    sh "./aws.sh"
                 }
                 
                 echo "Deployment completed"
