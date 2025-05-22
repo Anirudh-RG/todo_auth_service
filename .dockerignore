@@ -1,2 +1,3 @@
-
+*Jenkinsfile
 *node_modules/
+*aws.sh

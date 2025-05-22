@@ -6,10 +6,10 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const pool = new Pool({
-  host: "43.204.110.68",
-  user: "postgres",
-  password: "XrAB75v0",
-  database: "authdb",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
   port: 5432,
 });
 

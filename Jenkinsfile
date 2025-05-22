@@ -3,16 +3,8 @@ pipeline{
     stages{
         stage('Docker build'){
             steps{
-            echo "starting docker build"
-            withCredentials([
-                string(credentialsId: 'auth-db-host', variable: 'DB_HOST'),
-                string(credentialsId: 'auth-db-name', variable: 'DB_NAME'),
-                string(credentialsId: 'auth-db-user', variable: 'DB_USER'),
-                string(credentialsId: 'auth-db-pass', variable: 'DB_PASS'),
-                string(credentialsId: 'jwt-secret',variable: 'JWT_SECRET'),
-            ]){
-                sh "docker build -t todo_services/auth_service ."
-            }
+            echo "starting docker build"           
+            sh "docker build -t todo_services/auth_service ."
             sh "docker images"
             }
         }
@@ -35,7 +27,7 @@ pipeline{
         stage('confirmation'){
             steps{
                 script {
-                    def response = sh(script: "aws ecr-public describe-repositories --repository-names nodejs/sserver", returnStdout: true)
+                    def response = sh(script: "aws ecr-public describe-repositories --region ap-south-1 --repository-names todo_services/auth_service", returnStdout: true)
                     echo "Response: ${response}"
                 }
                 echo "Done with confirmation"
