@@ -25,10 +25,18 @@ pipeline{
             }
         }
         stage('confirmation'){
+            environment {
+                AWS_CREDENTIALS  = credentials('aws-creds')
+            }
             steps{
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+                                  credentialsId: 'aws-creds',
+                                  accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+                                  secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                 script {
                     def response = sh(script: "aws ecr-public describe-repositories --region ap-south-1 --repository-names todo_services/auth_service", returnStdout: true)
                     echo "Response: ${response}"
+                }
                 }
                 echo "Done with confirmation"
             }
