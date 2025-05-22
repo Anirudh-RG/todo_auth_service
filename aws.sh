@@ -31,7 +31,7 @@ cat > task_def.json << EOF
   "requiresCompatibilities": [
     "EC2"
   ],
-  "networkMode": "default"
+  "networkMode": "bridge"
 }
 EOF
 
