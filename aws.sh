@@ -24,8 +24,8 @@ cat > task_def.json << EOF
           "protocol": "tcp"
         }
       ],
-      "memory": 512,
-      "cpu": 256
+      "memory": 424,
+      "cpu": 128
     }
   ],
   "requiresCompatibilities": [
